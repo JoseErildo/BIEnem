@@ -9,8 +9,8 @@ with nu_inscritos_desistentes as (
 ), nu_inscritos_aplicantes as (
   select nu_inscricao
   from dados_enem2019.MICRODADOS_ENEM_2019 me
-  where me.tp_presenca_cn <> 0 and
-        me.tp_presenca_ch <> 0 and
-        me.tp_presenca_lc <> 0 and
+  where me.tp_presenca_cn <> 0 or
+        me.tp_presenca_ch <> 0 or
+        me.tp_presenca_lc <> 0 or
         me.tp_presenca_mt <> 0 
 )

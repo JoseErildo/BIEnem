@@ -1,0 +1,8 @@
+case(mi.tp_cor_raca)
+      WHEN 0 THEN cast('Não declarado' as string)
+      WHEN 1 THEN cast('Branca' as string)
+      WHEN 2 THEN cast('Preta' as string)
+      WHEN 3 THEN cast('Parda' as string)
+      WHEN 4 THEN cast('Amarela' as string)
+      WHEN 5 THEN cast('Indígena' as string)
+      ELSE 'null' END AS tipo_escola,

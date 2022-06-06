@@ -1,0 +1,62 @@
+with nu_inscritos_desistentes as (
+  select nu_inscricao
+  from dados_enem2019.MICRODADOS_ENEM_2019 me
+  where me.tp_presenca_cn = 0 and
+        me.tp_presenca_ch = 0 and
+        me.tp_presenca_lc = 0 and
+        me.tp_presenca_mt = 0     
+)
+
+select 
+  nu_inscricao, 
+  co_prova_cn nota_cn,
+  co_prova_ch nota_ch,
+  co_prova_lc nota_lc,
+  co_prova_mt nota_mt,
+  sum(
+    ifnull(CO_PROVA_CN,0) + 
+    ifnull(CO_PROVA_CH,0) + 
+    ifnull(CO_PROVA_LC,0) + 
+    ifnull(CO_PROVA_MT,0))/4 media_aluno,
+  nu_nota_redacao nota_redacao,
+  no_municipio_esc escola_do_aluno,
+  no_municipio_prova escola_da_prova,
+  tp_faixa_etaria faixa_etaria,
+  tp_dependencia_adm_esc tipo_de_escola,
+  tp_sexo genero,
+  tp_cor_raca cor_raca,
+  sg_uf_esc sigla_estado,
+  case(sg_uf_esc)
+      WHEN 'AC' THEN 'Acre, Brasil'
+      WHEN 'AL' THEN 'Alagoas, Brasil'
+      WHEN 'AP' THEN 'Amapá, Brasil'
+      WHEN 'AM' THEN 'Amazonas, Brasil'
+      WHEN 'BA' THEN 'Bahia, Brasil'
+      WHEN 'CE' THEN 'Ceará, Brasil'
+      WHEN 'DF' THEN 'Distrito Federal, Brasil'
+      WHEN 'ES' THEN 'Espírito Santo, Brasil'
+      WHEN 'GO' THEN 'Goiás, Brasil'
+      WHEN 'MA' THEN 'Maranhão, Brasil'
+      WHEN 'MT' THEN 'Mato Grosso, Brasil'
+      WHEN 'MS' THEN 'Mato Grosso do Sul, Brasil'
+      WHEN 'MG' THEN 'Minas Gerais, Brasil'
+      WHEN 'PA' THEN 'Pará, Brasil'
+      WHEN 'PB' THEN 'Paraíba, Brasil'
+      WHEN 'PR' THEN 'Paraná, Brasil'
+      WHEN 'PE' THEN 'Pernambuca, Brasil'
+      WHEN 'PI' THEN 'Piauí, Brasil'
+      WHEN 'RJ' THEN 'Rio de Janeiro, Brasil'
+      WHEN 'RN' THEN 'Rio Grande do Norte, Brasil'
+      WHEN 'RS' THEN 'Rio Grande do Sul, Brasil'
+      WHEN 'RO' THEN 'Rondônia, Brasil'
+      WHEN 'RR' THEN 'Roraima, Brasil'
+      WHEN 'SC' THEN 'Santa Catarina, Brasil'
+      WHEN 'SP' THEN 'São Paulo, Brasil'
+      WHEN 'SE' THEN 'Sergipe, Brasil'
+      WHEN 'TO' THEN 'Tocantins, Brasil'
+      ELSE 'null' END AS Estado  
+from `pelagic-bastion-352202.dados_enem2019.MICRODADOS_ENEM_2019`
+where nu_inscricao in (select * from nu_inscritos_desistentes)
+group by nu_inscricao, co_prova_cn, co_prova_ch, co_prova_lc, co_prova_mt, no_municipio_esc, 
+         no_municipio_prova, tp_faixa_etaria, nu_nota_redacao,
+         tp_dependencia_adm_esc, tp_sexo, tp_cor_raca, sg_uf_esc

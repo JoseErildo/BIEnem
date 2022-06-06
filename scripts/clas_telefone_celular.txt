@@ -1,0 +1,7 @@
+case(mi.q022)
+      WHEN 'A' THEN cast('Não' as string)
+      WHEN 'B' THEN cast('Sim' as string)
+      WHEN 'C' THEN cast('Sim' as string)
+      WHEN 'D' THEN cast('Sim' as string)
+      WHEN 'E' THEN cast('Sim' as string)
+      ELSE 'null' END AS metrica_celular,

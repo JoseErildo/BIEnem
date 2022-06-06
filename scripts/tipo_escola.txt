@@ -1,0 +1,6 @@
+case(mi.tp_faixa_etaria)
+      WHEN 1 THEN cast('Federal' as string)
+      WHEN 2 THEN cast('Estadual' as string)
+      WHEN 3 THEN cast('Municipal' as string)
+      WHEN 4 THEN cast('Privada' as string)
+      ELSE 'null' END AS tipo_escola,

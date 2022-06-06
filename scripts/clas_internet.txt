@@ -1,0 +1,4 @@
+case(mi.q025)
+      WHEN 'A' THEN cast('Não' as string)
+      WHEN 'B' THEN cast('Sim' as string)
+      ELSE 'null' END AS metrica_internet,

@@ -1,0 +1,4 @@
+case(mi.tp_localizacao_esc)
+      WHEN 1 THEN cast('Urbana' as string)
+      WHEN 2 THEN cast('Rural' as string)
+      ELSE 'null' END AS escola_r_u,

@@ -1,0 +1,4 @@
+sum(isnull(CO_PROVA_CN) + 
+isnull(CO_PROVA_CH) + 
+isnull(CO_PROVA_LC) + 
+isnull(CO_PROVA_MT_))/4

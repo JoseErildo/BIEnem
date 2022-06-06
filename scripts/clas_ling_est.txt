@@ -1,0 +1,5 @@
+case(mi.tp_lingua)
+      WHEN 0 THEN cast('Inglês' as string)
+      WHEN 1 THEN cast('Espanhol' as string)
+      ELSE 'null' END AS lingua_estrangeira,
+

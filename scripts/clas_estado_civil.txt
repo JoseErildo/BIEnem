@@ -1,0 +1,10 @@
+case(mi.tp_estado_civil)
+      WHEN 0 THEN cast('Não informado' as string)
+      WHEN 1 THEN cast('Solteiro(a)' as string)
+      WHEN 2 THEN cast('Casado(a)' as string)
+      WHEN 3 THEN cast('Divorciado(a)' as string)
+      WHEN 4 THEN cast('Viúvo(a)' as string)
+      ELSE 'null' END AS estado_civil,
+
+
+
